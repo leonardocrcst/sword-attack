@@ -17,7 +17,7 @@ class IronSword implements Sword {
             contundente: 4
         }
         this.imagem = "iron-sword.svg";
-        this.material = "madeira";
+        this.material = "ferro";
     }
 
     ataqueContundente(): number {
@@ -34,6 +34,10 @@ class IronSword implements Sword {
 
     imagemEspada(): string {
         return this.imagem
+    }
+
+    titulo(): string {
+        return `Espada de ${this.material}`;
     }
 }
 export default IronSword;

@@ -17,7 +17,7 @@ class BronzeSword implements Sword {
             contundente: 3
         }
         this.imagem = "bronze-sword.svg";
-        this.material = "madeira";
+        this.material = "bronze";
     }
 
     ataqueContundente(): number {
@@ -34,6 +34,10 @@ class BronzeSword implements Sword {
 
     imagemEspada(): string {
         return this.imagem
+    }
+
+    titulo(): string {
+        return `Espada de ${this.material}`;
     }
 }
 export default BronzeSword;

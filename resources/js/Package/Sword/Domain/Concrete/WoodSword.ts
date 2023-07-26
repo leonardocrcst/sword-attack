@@ -35,5 +35,9 @@ class WoodSword implements Sword {
     imagemEspada(): string {
         return this.imagem
     }
+
+    titulo(): string {
+        return `Espada de ${this.material}`;
+    }
 }
 export default WoodSword;

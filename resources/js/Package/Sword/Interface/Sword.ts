@@ -12,5 +12,6 @@ interface Sword {
     ataquePerfurante(): number
     ataqueContundente(): number
     imagemEspada(): string
+    titulo(): string
 }
 export default Sword;

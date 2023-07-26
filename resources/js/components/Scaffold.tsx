@@ -1,9 +1,10 @@
 import * as React from 'react';
-import {Container, FormControlLabel, Grid, Radio, RadioGroup, SvgIcon, Typography} from "@mui/material";
-import {useEffect, useState} from "react";
+import {useEffect, useState} from 'react';
+import {Container, FormControlLabel, Grid, Radio, RadioGroup, Typography} from "@mui/material";
 import {SwordType} from "../Package/Sword/Type/SwordType";
 import SwordFactory from "../Package/Sword/SwordFactory";
 import Sword from "../Package/Sword/Interface/Sword";
+import SwordCard from "./SwordCard";
 
 const Scaffold = () => {
     const [
@@ -29,10 +30,6 @@ const Scaffold = () => {
         }
     }, [espadaState]);
 
-    useEffect(() => {
-        espadaEscolhida && console.log(espadaEscolhida.imagemEspada());
-    }, [espadaEscolhida]);
-
     return (
         <Container>
             <Grid container gap={3}>
@@ -40,18 +37,17 @@ const Scaffold = () => {
                     <Typography variant={"h6"}>Teste de espadas</Typography>
                     <Typography variant={"body1"}>Escolha a espada que deseja testar:</Typography>
                     <RadioGroup name={"espada"}>
-                        <FormControlLabel onChange={event => handleChange(event.target)} control={<Radio/>} label={"Madeira"} value={"madeira"}/>
-                        <FormControlLabel onChange={event => handleChange(event.target)} control={<Radio/>} label={"Pedra"} value={"pedra"}/>
-                        <FormControlLabel onChange={event => handleChange(event.target)} control={<Radio/>} label={"Bronze"} value={"bronze"}/>
-                        <FormControlLabel onChange={event => handleChange(event.target)} control={<Radio/>} label={"Ferro"} value={"ferro"}/>
+                        {['madeira', 'pedra', 'bronze', 'ferro'].map((item) => {
+                            // @ts-ignore
+                            return <FormControlLabel key={item} control={<Radio />} onChange={event => handleChange(event.target)} label={item.capitalize()} value={item} />
+                        })}
                     </RadioGroup>
                 </Grid>
-                <Grid item>
-                    <Typography variant={"h6"}>Espada escolhida</Typography>
-                    {espadaEscolhida ? (
-                        <img src={`/img/${espadaEscolhida.imagemEspada()}`} />
-                    ): <Typography variant={"body2"}>Nenhuma espada escolhida</Typography>}
-                </Grid>
+                {espadaEscolhida && (
+                    <Grid item>
+                        <SwordCard sword={espadaEscolhida}/>
+                    </Grid>
+                )}
             </Grid>
         </Container>
     );
